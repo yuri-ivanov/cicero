@@ -1,0 +1,22 @@
+<h1>My First Bank Loan App from template </h1>
+
+<div>
+  <label>Loan amount</label>
+  <input [(ngModel)]="amount" placeholder="NOK">
+</div>
+
+<div>
+  <label>Down payments years</label>
+  <input [(ngModel)]="years" placeholder="years">
+</div>
+
+<div>
+  <label>Interest rate</label>
+  <input [(ngModel)]="percentage" placeholder="%">
+
+</div>
+
+<div>
+  <h3>Monthly payment</h3>
+  {{payment}}
+</div>
