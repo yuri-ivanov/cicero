@@ -4,12 +4,33 @@ import {Observable}     from 'rxjs/Observable';
 
 @Injectable()
 export class CfsService {
-  private serviceUrl = "../calculateLoan.json";
+  private ciceroUrl = "https://cfs-ws-itera.cicero.no/cfp/6/ws/rest/calculator/calculateLoan";
+  private serviceUrl = this.ciceroUrl;
+  private mockUrl = "../calculateLoan.json";
 
   constructor(private http: Http){}
 
-  calcCfsLoan(): Observable<any> {
-    return this.http.get(this.serviceUrl)
+  useRealService( useReal:boolean ){
+    if(useReal){
+      this.serviceUrl = this.ciceroUrl;
+    } else {
+      this.serviceUrl = this.mockUrl;
+    }
+    console.log(this.serviceUrl);
+  }
+
+  calcCfsLoan(amount:number, years: number, rate:number): Observable<any> {
+    var currentTime = new Date();
+    var curMonth = currentTime.getMonth() + 1;
+    var curYear = currentTime.getFullYear();
+    var numberOfPayments = years*12;
+    return this.http.get(this.serviceUrl+"?"+
+                          "loanRaisingMonth="+ curMonth +
+                          "&loanRaisingYear="+ curYear +
+                          "&principalAmount="+ amount +
+                          "&annualNominalInterestRate=" + rate +
+                          "&totalNumberOfPayments=" + numberOfPayments
+                        )
                     .map(this.extractData)
                     .catch(this.handleError);
   }
@@ -28,4 +49,5 @@ export class CfsService {
       console.error(errMsg); // log to console instead
       return Observable.throw(errMsg);
   }
+
 }
