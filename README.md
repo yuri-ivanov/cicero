@@ -1,5 +1,7 @@
 #Angular2 demo with bank loan service
 
+Demo http://yuri-ivanov.github.io/bank/
+
 ##installation
 
 npm v3.8.6

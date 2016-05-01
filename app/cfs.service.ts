@@ -6,7 +6,7 @@ import {Observable}     from 'rxjs/Observable';
 export class CfsService {
   private ciceroUrl = "https://cfs-ws-itera.cicero.no/cfp/6/ws/rest/calculator/calculateLoan";
   private serviceUrl = this.ciceroUrl;
-  private mockUrl = "../calculateLoan.json";
+  private mockUrl = "calculateLoan.json";
 
   constructor(private http: Http){}
 
