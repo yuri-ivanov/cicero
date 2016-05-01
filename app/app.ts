@@ -182,7 +182,7 @@ export class App implements OnInit{
 
   formatViewValues(){
     (<Control>this.form.controls['amount']).updateValue(this.amount + " kr");
-    (<Control>this.form.controls['years']).updateValue(this.years + " kr");
+    (<Control>this.form.controls['years']).updateValue(this.years + " år");
     (<Control>this.form.controls['rate']).updateValue(this.rate + " %");
   }
 
